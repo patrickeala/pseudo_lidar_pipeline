@@ -92,45 +92,6 @@ Download Final Rosabgs [here](https://drive.google.com/file/d/1RUIpfbKjYaD_zO1uU
 
 ## Setup
 
-### Quick Visualization of Results
-
-If you want to quickly visualize the results using a pre-generated output results bag, simply run:
-
-```bash
-rviz -d ~/pseudo_lidar_pipeline/rviz/segnode.rviz
-rosbag play /root/pseudo_lidar_pipeline/rosbags/road_traversal.bag
-
-rviz -d ~/pseudo_lidar_pipeline/rviz/segnode.rviz
-rosbag play /root/pseudo_lidar_pipeline/rosbags/tiled_area.bag
-
-```
-This will show the pseudo-lidar point cloud and related topics in RViz using the provided configuration.
-
----
-
-### Running on Your Own
-
-To run the segmentation pipeline and generate pseudo-lidar results from scratch:
-
-1. **Start RViz:**
-   ```bash
-   rviz -d ~/pseudo_lidar_pipeline/rviz/segnode.rviz
-   ```
-2. **Run the segmentation node:**
-   ```bash
-   rosrun segmentation_node seg_node.py
-   ```
-3. **Play a bag file:**
-   ```bash
-   rosbag play /root/pseudo_lidar_pipeline/rosbags/outdoor_road.bag
-   ```
-
-You can also record the output as follows:
-```bash
-rosbag record -O <output_bag.bag> \
-  /pseudo_lidar/points /tf_static /perception/camera_front_straight/depth/points \
-  /pseudo_lidar/semantic_mask /pseudo_lidar/ground_mask /perception/camera_front_straight/rgb/image
-```
 
 ---
 
@@ -177,6 +138,64 @@ rosbag record -O <output_bag.bag> \
    - Place the downloaded `.bag` files in `/root/pseudo_lidar_pipeline/rosbags`.
 
 ---
+### Quick Visualization of Results
+
+To quickly visualize the results using a pre-generated output bag, open three terminals and run the following commands:
+
+**Terminal 1: Start ROS core**
+```bash
+source /opt/ros/noetic/setup.bash
+source ~/pseudo_lidar_pipeline/catkin_ws/devel/setup.bash
+roscore
+```
+
+**Terminal 2: Start RViz**
+```bash
+source /opt/ros/noetic/setup.bash
+source ~/pseudo_lidar_pipeline/catkin_ws/devel/setup.bash
+rviz -d ~/pseudo_lidar_pipeline/rviz/segnode.rviz
+```
+
+**Terminal 3: Play a ROS bag**
+```bash
+source /opt/ros/noetic/setup.bash
+source ~/pseudo_lidar_pipeline/catkin_ws/devel/setup.bash
+rosbag play /root/pseudo_lidar_pipeline/rosbags/road_traversal.bag
+```
+
+You can also try the other output bag:
+```bash
+rosbag play /root/pseudo_lidar_pipeline/rosbags/tiled_area.bag
+```
+
+This will show the pseudo-lidar point cloud and related topics in RViz using the provided configuration.
+
+---
+
+### Running on Your Own
+
+To run the segmentation pipeline and generate pseudo-lidar results from scratch:
+
+1. **Start RViz:**
+   ```bash
+   rviz -d ~/pseudo_lidar_pipeline/rviz/segnode.rviz
+   ```
+2. **Run the segmentation node:**
+   ```bash
+   rosrun segmentation_node seg_node.py
+   ```
+3. **Play a bag file:**
+   ```bash
+   rosbag play /root/pseudo_lidar_pipeline/rosbags/outdoor_road.bag
+   ```
+
+You can also record the output as follows:
+```bash
+rosbag record -O <output_bag.bag> \
+  /pseudo_lidar/points /tf_static /perception/camera_front_straight/depth/points \
+  /pseudo_lidar/semantic_mask /pseudo_lidar/ground_mask /perception/camera_front_straight/rgb/image
+```
+
 
 ## Future Work
 
