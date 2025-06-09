@@ -11,7 +11,7 @@ Below is an example visualization from the pipeline:
 - **Images:** Input RGB image, output ground mask, and output segmentation mask.
 - **Point Clouds:** Point cloud visualizations showing the original point cloud (white) and the projected ground points (red).
 
-![Example Output](/root/pseudo_lidar_pipeline/png/example_output.png)
+![Example Output](png/example_output.png)
 
 ---
 
