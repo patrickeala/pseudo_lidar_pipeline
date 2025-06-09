@@ -87,7 +87,7 @@ Below is an example visualization from the pipeline:
 - **Additional Topics (for debugging/visualization):**
   - `/pseudo_lidar/semantic_mask`
   - `/pseudo_lidar/ground_mask`  - `/perception/camera_front_straight/rgb/image`
-
+Download Final Rosabgs [here](https://drive.google.com/file/d/1RUIpfbKjYaD_zO1uUA9jy8u-fKN9H_lj/view?usp=sharing). Place in `/root/pseudo_lidar_pipeline/rosbags`.
 ---
 
 ## Setup
