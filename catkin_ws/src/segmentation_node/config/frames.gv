@@ -1,0 +1,22 @@
+digraph G {
+"base_footprint" -> "base_link"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"odom" -> "base_footprint"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 25.101 Hz\nMost recent transform: 1749188680.045 ( 250394.787 sec old)\nBuffer length: 4.940 sec\n"];
+"base_link" -> "camera_front_straight_link"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "camera_front_tilted_link"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "camera_left_link"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "camera_rear_link"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "camera_right_link"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "imu"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "laser_front"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "lidar_3d_straight"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"base_link" -> "lidar_3d_tilted"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"camera_front_straight_depth_frame" -> "camera_front_straight_color_frame"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"camera_front_straight_link" -> "camera_front_straight_depth_frame"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"camera_front_straight_color_frame" -> "camera_front_straight_color_optical_frame"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"camera_front_straight_depth_frame" -> "camera_front_straight_depth_optical_frame"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 10000.000 Hz\nMost recent transform: 0.000 ( 1749439074.831 sec old)\nBuffer length: 0.000 sec\n"];
+"map" -> "odom"[label="Broadcaster: /play_1749439053352833891\nAverage rate: 20.122 Hz\nMost recent transform: 1749188679.975 ( 250394.857 sec old)\nBuffer length: 4.920 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1749439074.831"[ shape=plaintext ] ;
+ }->"map";
+}

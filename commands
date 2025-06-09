@@ -1,0 +1,107 @@
+docker build --no-cache -t pseudo_lidar_dev .   
+
+
+xhost +local:root  # Allow docker containers to access X11
+
+docker run -d \
+    --name pseudo_lidar_dev \
+    -e DISPLAY=$DISPLAY \
+    -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v /home/patrick/personal_repos/pseudo_lidar_pipeline:/root/pseudo_lidar_pipeline \
+    --network host \
+    --privileged \
+    pseudo_lidar_dev \
+    tail -f /dev/null
+
+# Connecting to container
+docker exec -it pseudo_lidar_dev bash
+
+
+# Next steps
+cd /root/pseudo_lidar_pipeline/catkin_ws
+source /opt/ros/noetic/setup.bash
+# catkin config (if needed)
+
+catkin init
+catkin build
+echo "source /root/pseudo_lidar_pipeline/catkin_ws/devel/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+
+# Place rosbags into
+# /root/pseudo_lidar_pipeline/rosbags
+
+
+
+# testing the rosbag play
+cd /root/pseudo_lidar_pipeline/catkin_ws
+source /opt/ros/noetic/setup.bash
+
+roscore
+
+rosbag play /root/pseudo_lidar_pipeline/rosbags/static.bag
+rosbag play /root/pseudo_lidar_pipeline/rosbags/outdoor_road.bag
+rosbag play /root/pseudo_lidar_pipeline/rosbags/semi_outdoor.bag
+
+
+# problems viewing compressed images
+apt update && apt install ros-noetic-compressed-image-transport
+
+
+# creating the segmentation node 
+cd /root/pseudo_lidar_pipeline/catkin_ws/src
+catkin_create_pkg segmentation_node rospy std_msgs sensor_msgs cv_bridge image_transport
+
+
+cd /root/pseudo_lidar_pipeline/catkin_ws
+source /opt/ros/noetic/setup.bash
+catkin build
+source devel/setup.bash
+
+# running the segmentation node
+cd /root/pseudo_lidar_pipeline/catkin_ws
+source /opt/ros/noetic/setup.bash
+source devel/setup.bash
+
+rosrun segmentation_node seg_node.py
+
+# Fast scnn setup
+
+cd /root/pseudo_lidar_pipeline/catkin_ws/src/segmentation_node/utils
+git clone https://github.com/Tramac/Fast-SCNN-pytorch.git fast_scnn_repo
+cp /root/pseudo_lidar_pipeline/catkin_ws/src/segmentation_node/utils/fast_scnn_repo/models/fast_scnn.py \
+   /root/pseudo_lidar_pipeline/catkin_ws/src/segmentation_node/utils/fast_scnn.py
+
+
+# intrinsics of rgb and depth are different
+# need to scale the intrinsics to the correct size
+# assumed 1024x768 depth and 640x360 rgb
+# extrinsically the two cameras are on
+
+
+
+# recording the output
+# BAG_PATH=outdoor_road.bag
+# OUTPUT_BAG=road_traversal.bag
+
+# For tiled outdoor example
+# BAG_PATH=semi_outdoor.bag
+# OUTPUT_BAG=tiled_area.bag
+
+rosbag record -O /root/pseudo_lidar_pipeline/rosbags/road_traversal.bag \
+/pseudo_lidar/points \
+/tf_static \
+/perception/camera_front_straight/depth/points \
+/perception/camera_front_straight/rgb/image/compressed \
+/pseudo_lidar/semantic_mask \
+/pseudo_lidar/ground_mask
+
+
+
+
+rosbag record -O /root/pseudo_lidar_pipeline/rosbags/tiled_area.bag \
+/pseudo_lidar/points \
+/tf_static \
+/perception/camera_front_straight/depth/points \
+/perception/camera_front_straight/rgb/image/compressed \
+/pseudo_lidar/semantic_mask \
+/pseudo_lidar/ground_mask

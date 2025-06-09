@@ -1,0 +1,39 @@
+# gitignore
+
+# ROS/catkin build and log directories
+catkin_ws/build/
+catkin_ws/devel/
+catkin_ws/logs/
+catkin_ws/install/
+
+# Python cache
+*.pyc
+__pycache__/
+
+# Output/results/logs
+test_result/
+result/
+*.log
+
+
+# Editor/IDE files
+.vscode/
+.idea/
+.DS_Store
+
+# Large data (rosbags)
+rosbags/
+
+# Personal/private scripts and commands
+commands/
+catkin_ws/src/segmentation_node/scripts/run_segnode.sh
+catkin_ws/src/segmentation_node/scripts/seg_node_encoderonly.py
+
+# Fast SCNN repo
+catkin_ws/src/segmentation_node/utils/fast_scnn_repo/
+
+# Personal/machine-specific config
+catkin_ws/src/segmentation_node/config/all_rgb_camera_info.txt
+
+# If you want to ignore all scripts in scripts/ (optional):
+# catkin_ws/src/segmentation_node/scripts/*
