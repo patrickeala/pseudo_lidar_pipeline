@@ -36,4 +36,4 @@ catkin_ws/src/segmentation_node/utils/fast_scnn_repo/
 catkin_ws/src/segmentation_node/config/all_rgb_camera_info.txt
 
 # If you want to ignore all scripts in scripts/ (optional):
-# catkin_ws/src/segmentation_node/scripts/*
+# catkin_ws/src/segmentation_node/scripts/*rosbags.zip
