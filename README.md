@@ -166,7 +166,9 @@ rosbag record -O <output_bag.bag> \
 5. **Build the ROS workspace (inside the container):**
    ```bash
    cd /root/pseudo_lidar_pipeline/catkin_ws
-   catkin_make
+   source /opt/ros/noetic/setup.bash
+   catkin init
+   catkin build
    source devel/setup.bash
    ```
 
