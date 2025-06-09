@@ -138,7 +138,7 @@ rosbag record -O <output_bag.bag> \
 
 1. **Clone the repository:**
    ```bash
-   git clone <repo_url>
+   git clone https://github.com/patrickeala/pseudo_lidar_pipeline.git
    cd pseudo_lidar_pipeline
    ```
 2. **Build the Docker image:**
